@@ -35,7 +35,7 @@ function validateEmail() {
         emailerror.textContent = "Email is required";
         return false;
     }
-    else if (!emailid.value.include("@") || !emailid.value.include(".")) {
+    else if (!emailid.value.includes("@") || !emailid.value.includes(".")) {
         emailerror.textContent = "Enter a valid email address";
         return false;
     }
