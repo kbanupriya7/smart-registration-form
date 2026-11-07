@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cambo&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="container">
+        <h2>Registration Form</h2>
+
+        <form id="regform">
+
+            <label>Name</label>
+            <input type="text" id="sname" placeholder="Enter your name">
+            <p id="nameerror" class="error"></p>
+
+            <label>Email</label>
+            <input type="email" id="emailid" placeholder="Enter your email">
+            <p id="emailerror" class="error"></p>
+
+            <label>Password</label>
+            <input type="password" id="pword" placeholder="Enter your password">
+            <p id="passworderror" class="error"></p>
+
+            <label>Bio</label>
+            <textarea id="biotext" maxlength="200" placeholder="Write something about yourself"></textarea>
+
+            <div class="counter">
+                <span id="bioerror" class="error"></span>
+                <span id="charcount">0 / 200 characters</span>
+            </div>
+
+            <button type="submit" id="regbtn" disabled>Register</button>
+
+            <p id="success"></p>
+
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

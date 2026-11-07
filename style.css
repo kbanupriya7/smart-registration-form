@@ -1,0 +1,137 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Cambo", serif;
+    background-color: #5fa2e5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: #2563eb;
+}
+
+.container {
+    background-color: white;
+    width: 400px;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #ccc;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+input{
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-bottom:1px solid #ccc; ;
+    font-size: 14px;
+}
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    height: 90px;
+    resize: none;
+}
+
+input::placeholder {
+    font-size: 8px;
+}
+
+textarea::placeholder {
+    font-size: 8px;
+}
+.error {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.counter {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
+    font-size: 12px;
+}
+
+#charcount {
+    color: #555;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 20px;
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:disabled {
+    background-color: #999;
+    cursor: not-allowed;
+}
+
+#success {
+    color: green;
+    text-align: center;
+    margin-top: 15px;
+}
+
+/* Tablet */
+@media screen and (max-width: 768px) {
+    .container {
+        width: 80%;
+        padding: 22px;
+    }
+}
+
+/* Mobile */
+@media screen and (max-width: 480px) {
+    body {
+        padding: 15px;
+        align-items: center;
+    }
+
+    .container {
+        width: 100%;
+        padding: 20px;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+
+    input, textarea {
+        font-size: 16px;
+    }
+
+    button {
+        padding: 12px;
+        font-size: 15px;
+    }
+
+    .counter {
+        font-size: 11px;
+    }
+}
+
