@@ -1,49 +1,50 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration Form</title>
+    <title>Registration</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cambo&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cambo&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
-
-    <div class="container">
-        <h2>Registration Form</h2>
-
-        <form id="regform">
-
-            <label>Name</label>
-            <input type="text" id="sname" placeholder="Enter your name">
-            <p id="nameerror" class="error"></p>
-
-            <label>Email</label>
-            <input type="email" id="emailid" placeholder="Enter your email">
-            <p id="emailerror" class="error"></p>
-
-            <label>Password</label>
-            <input type="password" id="pword" placeholder="Enter your password">
-            <p id="passworderror" class="error"></p>
-
-            <label>Bio</label>
-            <textarea id="biotext" maxlength="200" placeholder="Write something about yourself"></textarea>
-
-            <div class="counter">
-                <span id="bioerror" class="error"></span>
-                <span id="charcount">0 / 200 characters</span>
+    <h1 class="heading">Welcome To BP's World</h1>
+    <div class="form-container">
+        <h2 class="form-container-heading">Register today, challenge yourself, <br>and let your knowledge shine!</h2>
+        <a href="#regform"><button class="regbtn">Register</button></a>
+    </div>
+    <div class="form-subcontainer" id="regform">
+        <h1 class="heading">Registration Portal</h1>
+        <form id="reg-form">
+            <input type="text" placeholder="Name here.." id="name">
+            <p id="name-error">	Please enter a valid name (letters only).</p>
+            <input type="email" placeholder="Email here.." id="emailid">
+            <p id="email-error">Please enter a valid Gmail address.</p>
+            <input type="text" inputmode="numeric" pattern="[0-9]*" placeholder="Contact Number here.." id="contact">
+            <p id="contact-error">Please enter a valid 10-digit contact number.</p>
+            <input type="password" placeholder="Password here.." id="passwd">
+            <p id="pword-error">Password must be at least 8 characters with uppercase, lowercase, digit and special character.</p>
+            <div style="display: flex; gap: 20px;" id="gender-list">
+            <input type="radio" name="gender" value="Female">Female
+            <input type="radio" name="gender" value="Male">Male 
             </div>
-
-            <button type="submit" id="regbtn" disabled>Register</button>
-
-            <p id="success"></p>
-
+            <p id="gender-error">Please select your gender.</p>
+            <div style="display: flex; gap: 20px;" id="course-list">
+            <input type="checkbox" name="course" value="html">Web Development
+            <input type="checkbox" name="course" value="network">Network
+            <input type="checkbox" name="course" value="network">Digital Marketing
+            <input type="checkbox" name="course" value="network">AI Tools
+            </div>
+            <p id="course-error">Please select at least one course.</p>
+            <textarea placeholder="Bio here" maxlength="200" minlength="10" id="bio-text"></textarea>
+            <p id="bio-error">Please enter your bio (minimum 10 characters).</p>
+            <p style="text-align: right;font-family: 'Courier New', Courier, monospace;" id="text-count">0 / 200</p>
+            <button class="submitbtn" id="submit-btn">Submit</button>
+            <p id="success-msg" style="text-align: center;">Your registration was submitted successfully </p>
         </form>
     </div>
-
     <script src="script.js"></script>
 </body>
 </html>
