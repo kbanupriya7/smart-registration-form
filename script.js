@@ -1,128 +1,169 @@
 
-var regform = document.getElementById("regform");
 
-var sname = document.getElementById("sname");
-var emailid = document.getElementById("emailid");
-var pword = document.getElementById("pword");
-var biotext = document.getElementById("biotext");
+const submitbtn=document.getElementById("submit-btn")
+var username=document.getElementById("name")
+    var emailid=document.getElementById("emailid")
+    var contact=document.getElementById("contact")
+    var passwd=document.getElementById("passwd")
+    var gender = document.getElementsByName("gender")
+    var course = document.getElementsByName("course")
+    var bio_text = document.getElementById("bio-text")
+     var name_regexp =/^[a-zA-Z]+$/
+    var email_regexp=/^[a-zA-Z0-9,_%+-]+@gmail\.com/
+    var pword_regexp =/^[a-zA-Z0-9+@£$#&*]{8,}$/
+    var contact_regexp=/^\d{10}$/
+    
+var nameerror=document.getElementById("name-error")
+var emailerror=document.getElementById("email-error")
+var contacterror=document.getElementById("contact-error")
+var pworderror=document.getElementById("pword-error")
+var gendererror=document.getElementById("gender-error")
+var courseerror=document.getElementById("course-error")
+var bioerror=document.getElementById("bio-error")
+var success_msg=document.getElementById("success-msg")
+var text_count = document.getElementById("text-count")
 
-var nameerror = document.getElementById("nameerror");
-var emailerror = document.getElementById("emailerror");
-var passworderror = document.getElementById("passworderror");
-var bioerror = document.getElementById("bioerror");
 
-var charcount = document.getElementById("charcount");
-var regbtn = document.getElementById("regbtn");
-var success = document.getElementById("success");
-
-// Name validation
-function validateName() {
-    if (sname.value.trim() == "") {
-        nameerror.textContent = "Name is required";
-        return false;
+submitbtn.addEventListener("click",function(event) {
+    event.preventDefault()
+    var gender_selected=false
+var course_selected=false
+    var isValidation=true  
+  if(!name_regexp.test(username.value)){
+     
+     nameerror.style.display="inline" 
+     isValidation=false
     }
-    else {
-        nameerror.textContent = "";
-        return true;
+    else{
+        
+        nameerror.style.display="none"
+    }
+
+    if(!email_regexp.test(emailid.value)){
+     
+     emailerror.style.display="inline"
+      isValidation=false 
+    }
+    else{
+        
+        emailerror.style.display="none"
+    } 
+    if(!contact_regexp.test(contact.value)){
+        contacterror.style.display="inline"
+         isValidation=false
+    }
+    else{
+        contacterror.style.display="none"
+    }
+
+     if(!pword_regexp.test(passwd.value)){
+        pworderror.style.display="inline"
+         isValidation=false
+    }
+    else{
+       pworderror.style.display="none"
+    }
+    //gender validation
+    for(var count=0;count<gender.length;count++){
+        if(gender[count].checked){
+            gender_selected=true
+        }
+    }
+    if(!gender_selected){
+            gendererror.style.display="inline"
+             isValidation=false
+    }
+    else{
+       gendererror.style.display="none" 
+    }
+    //course validation
+    for(var i=0;i<course.length;i++){
+        if(course[i].checked){
+            course_selected=true
+        }
+    }
+    if(!course_selected){
+            courseerror.style.display="inline"
+             isValidation=false
+    }
+    else{
+       courseerror.style.display="none" 
+    }
+    //bio validation
+    if(bio_text.value.trim() === "" || bio_text.value.trim().length<=10){
+       bioerror.style.display="inline"
+        isValidation=false
+    }
+    else{
+        bioerror.style.display="none"
+        var counttotal =bio_text.value.length +" " + "/ 200"
+        text_count.textContent = counttotal
+
+    }
+    if(isValidation){
+        success_msg.style.display ="inline"
+        document.getElementById("reg-form").reset()
+        var counttotal =bio_text.value.length +" " + "/ 200"
+        text_count.textContent = counttotal
+         setTimeout(function() {
+        success_msg.style.display = "none";
+    }, 3000);
+
+    }
+    else{
+        success_msg.style.display ="none"
     }
 }
+)
 
-// Email validation
-function validateEmail() {
-   
+username.addEventListener("input", function() {
 
-    if (emailid.value.trim() == "") {
-        emailerror.textContent = "Email is required";
-        return false;
+    if (name_regexp.test(username.value)) {
+        nameerror.style.display = "none";
     }
-    else if (!emailid.value.includes("@") || !emailid.value.includes(".")) {
-        emailerror.textContent = "Enter a valid email address";
-        return false;
-    }
-    else {
-        emailerror.textContent = "";
-        return true;
-    }
-}
 
-// Password validation
-function validatePassword() {
-    if (pword.value.trim() == "") {
-        passworderror.textContent = "Password is required";
-        return false;
-    }
-    else if(!/^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[@#*&$]).{6,}$/.test(pword.value)){
-         passworderror.textContent = "Password must contain uppercase, lowercase, number, special character and minimum 6 characters";
-        return false;
-    }
-    else {
-        passworderror.textContent = "";
-        return true;
-    }
-}
-
-// Bio validation
-function validateBio() {
-    charcount.textContent = biotext.value.length + " / 200 characters";
-
-    if (biotext.value.trim() == "") {
-        bioerror.textContent = "Bio is required";
-        return false;
-    }
-    else {
-        bioerror.textContent = "";
-        return true;
-    }
-}
-
-// Check all fields
-function validateForm() {
-    var namevalid = validateName();
-    var emailvalid = validateEmail();
-    var passwordvalid = validatePassword();
-    var biovalid = validateBio();
-
-    regbtn.disabled = !(namevalid && emailvalid && passwordvalid && biovalid);
-}
-
-// Real-time validation using input events
-sname.addEventListener("input", function() {
-    validateName();
-    validateForm();
 });
 
 emailid.addEventListener("input", function() {
-    validateEmail();
-    validateForm();
-});
 
-pword.addEventListener("input", function() {
-    validatePassword();
-    validateForm();
-});
-
-biotext.addEventListener("input", function() {
-    validateBio();
-    validateForm();
-});
-
-// Form submission
-regform.addEventListener("submit", function(event) {
-    event.preventDefault();
-
-    validateForm();
-
-    if (!regbtn.disabled) {
-        success.textContent = "Registration Successful!";
-        regform.reset();
-
-        charcount.textContent = "0 / 200 characters";
-
-        nameerror.textContent = "";
-        emailerror.textContent = "";
-        passworderror.textContent = "";
-        bioerror.textContent = "";
-
-        regbtn.disabled = true;
+    if (email_regexp.test(emailid.value)) {
+        emailerror.style.display = "none";
     }
+
 });
+
+contact.addEventListener("input", function() {
+
+    if (contact_regexp.test(contact.value)) {
+        contacterror.style.display = "none";
+    }
+
+});
+
+passwd.addEventListener("input", function() {
+
+    if (pword_regexp.test(passwd.value)) {
+       pworderror.style.display = "none";
+    }
+
+});
+gender.forEach(function(item) {
+    item.addEventListener("change",function() {
+        gendererror.style.display = "none";
+    })
+})
+
+course.forEach(function(e) {
+    e.addEventListener("change",function() {
+        courseerror.style.display = "none";
+    })
+})
+bio_text.addEventListener("input",function(){
+        if(bio_text.value.trim() !=="" && bio_text.value.trim().length>=10){
+            bioerror.style.display="none"
+        }
+        var counttotal =bio_text.value.length +" " + "/ 200"
+        text_count.textContent = counttotal
+        
+    })
+
